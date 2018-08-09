@@ -178,8 +178,8 @@ def all(x, axis=None, keepdims=False):
 
 
 def any(x, axis=None, keepdims=False):
-    _report_unimplemented('any')
-
+    x = op.cast(x, plaidml.DType.BOOLEAN)
+    return op.max_reduce(x, axis, keepdims)
 
 def arange(start, stop=None, step=1, dtype='int32'):
     _report_unimplemented('arange')
